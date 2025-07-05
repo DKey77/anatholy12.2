@@ -1,0 +1,188 @@
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #f0f0f3;
+  z-index: 1000;
+  padding-top: env(safe-area-inset-top);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 20px;
+  height: 100px;
+}
+
+.workout-counter {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-left: 16px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: #f0f0f3;
+  box-shadow: 
+    8px 8px 16px #d1d1d4,
+    -8px -8px 16px #ffffff;
+  flex-shrink: 0;
+}
+
+.progress-bar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: -8px;
+  background: #f0f0f3;
+  padding: 12px 16px;
+  border-radius: 16px;
+  box-shadow: 
+    inset 6px 6px 12px #d1d1d4,
+    inset -6px -6px 12px #ffffff;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1d1d1f;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.workout-stats {
+  font-size: 14px;
+  font-weight: 700;
+  color: #007aff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.progress-bar {
+  position: relative;
+  width: 100%;
+  margin-top: -8px;
+  height: 8px;
+  background: #f0f0f3;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 
+    inset 3px 3px 6px #d1d1d4,
+    inset -3px -3px 6px #ffffff;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #007aff 0%, #5ac8fa 100%);
+  border-radius: 4px;
+  transition: width 0.6s ease-in-out;
+  box-shadow: 
+    0 0 8px rgba(0, 122, 255, 0.3);
+}
+
+.workout-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.workout-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.workout-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: #8e8e93;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.workout-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1d1d1f;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.2;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: #007aff;
+  border-radius: 3px;
+  transition: width 0.5s ease-in-out;
+  box-shadow: 
+    0 0 10px rgba(0, 122, 255, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  .app-header {
+    background: #1c1c1e;
+  }
+  
+  .logo-section {
+    background: #1c1c1e;
+    box-shadow: 
+      8px 8px 16px #0f0f10,
+      -8px -8px 16px #29292c;
+  }
+  
+  .progress-bar-container {
+    background: #1c1c1e;
+    box-shadow: 
+      inset 6px 6px 12px #0f0f10,
+      inset -6px -6px 12px #29292c;
+  }
+  
+  .progress-title {
+    color: #f2f2f7;
+  }
+  
+  .workout-stats {
+    color: #0a84ff;
+  }
+  
+  .workout-label {
+    color: #8e8e93;
+  }
+  
+  .workout-name {
+    color: #f2f2f7;
+  }
+  
+  .progress-bar {
+    background: #1c1c1e;
+    box-shadow: 
+      inset 3px 3px 6px #0f0f10,
+      inset -3px -3px 6px #29292c;
+  }
+  
+  .progress-bar-fill {
+    background: linear-gradient(90deg, #0a84ff 0%, #5ac8fa 100%);
+    box-shadow: 
+      0 0 8px rgba(10, 132, 255, 0.4);
+  }
+}
+
+@supports (padding: max(0px)) {
+  .app-header {
+    padding-top: max(8px, env(safe-area-inset-top));
+  }
+}

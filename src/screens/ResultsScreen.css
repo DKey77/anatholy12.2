@@ -1,0 +1,129 @@
+.analytics-block {
+  background: #f8faff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  padding: 16px 14px 10px 14px;
+  margin-bottom: 18px;
+}
+.analytics-row {
+  display: flex;
+  gap: 24px;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.analytics-chart {
+  margin-top: 8px;
+}
+.chart-title {
+  font-size: 13px;
+  color: #007aff;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+@media (prefers-color-scheme: dark) {
+  .analytics-block {
+    background: #23232b;
+    color: #f2f2f7;
+  }
+  .chart-title {
+    color: #0a84ff;
+  }
+}
+.results-round-block {
+  margin-bottom: 18px;
+}
+.results-round-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #007aff;
+  margin-bottom: 6px;
+  margin-top: 10px;
+}
+
+/* Импортируем общие стили из WorkoutsScreen.css */
+@import './WorkoutsScreen.css';
+
+/* Стили для статистики и прогресса */
+
+
+.workout-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.workout-result-card.compact {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 12px 14px;
+  margin-bottom: 2px;
+  font-size: 14px;
+}
+.workout-result-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1c1c1e;
+}
+.workout-result-exercises.compact {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.workout-result-exercise.compact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  padding: 0 0 0 4px;
+}
+.exercise-name {
+  flex: 1;
+  color: #222;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.exercise-weight {
+  font-weight: 700;
+  color: #007aff;
+  min-width: 28px;
+  text-align: right;
+}
+.exercise-diff {
+  margin-left: 4px;
+  font-size: 12px;
+}
+.progress-up {
+  color: #34c759;
+  font-weight: 700;
+}
+.progress-down {
+  color: #ff3b30;
+  font-weight: 700;
+}
+.progress-same {
+  color: #8e8e93;
+}
+
+@media (prefers-color-scheme: dark) {
+  .workout-result-card.compact {
+    background: #1c1c1e;
+    color: #f2f2f7;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+  .workout-result-header {
+    color: #f2f2f7;
+  }
+  .exercise-name {
+    color: #f2f2f7;
+  }
+  .exercise-weight {
+    color: #0a84ff;
+  }
+}

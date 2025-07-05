@@ -1,0 +1,32 @@
+
+/* Импортируем общие стили из WorkoutsScreen.css */
+@import './WorkoutsScreen.css';
+
+.settings-block {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.clear-stats-btn {
+  background: #ff3b30;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 0;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(255,59,48,0.08);
+}
+.clear-stats-btn:active {
+  background: #d70015;
+}
+.clear-success {
+  color: #34c759;
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 4px;
+}
