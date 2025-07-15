@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { LogoIcon } from './Icons';
 import './AppHeader.css';
 
@@ -15,6 +16,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
   lastWorkoutName = "Грудь и трицепс",
   nextWorkoutName = "Спина и бицепс"
 }) => {
+  const { t } = useTranslation();
   const progress = Math.round((completedWorkouts / totalWorkouts) * 100);
   
   return (
@@ -26,24 +28,22 @@ const AppHeader: React.FC<AppHeaderProps> = ({
         <div className="workout-counter">
           <div className="progress-bar-container">
             <div className="progress-header">
-              <span className="progress-title">Прогресс тренировок</span>
-              <span className="workout-stats">{completedWorkouts} из {totalWorkouts}</span>
+              <span className="progress-title">{t('progress_title', 'Прогресс тренировок')}</span>
+              <span className="workout-stats">{completedWorkouts} {t('of', 'из')} {totalWorkouts}</span>
             </div>
-            
             <div className="progress-bar">
               <div 
                 className="progress-bar-fill" 
                 style={{ width: `${progress}%` }}
               />
             </div>
-            
             <div className="workout-info">
               <div className="workout-item">
-                <span className="workout-label">Последняя</span>
+                <span className="workout-label">{t('last', 'Последняя')}</span>
                 <span className="workout-name">{lastWorkoutName}</span>
               </div>
               <div className="workout-item">
-                <span className="workout-label">Следующая</span>
+                <span className="workout-label">{t('next', 'Следующая')}</span>
                 <span className="workout-name">{nextWorkoutName}</span>
               </div>
             </div>

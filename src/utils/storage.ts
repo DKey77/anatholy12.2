@@ -1,13 +1,11 @@
 /**
  * Возвращает id тренировок, завершённых в текущем круге (уникальные)
  */
-export function getCurrentRoundCompletedIds(): number[] {
-  const results = getResultsWithRounds();
+export function getCurrentRoundCompletedIds(workoutsCount?: number): number[] {
+  const results = getResultsWithRounds(workoutsCount);
   if (results.length === 0) return [];
   const maxRound = Math.max(...results.map(r => r.round));
-  // Берём только результаты текущего круга
   const current = results.filter(r => r.round === maxRound);
-  // Уникальные id тренировок
   return Array.from(new Set(current.map(r => r.workoutId)));
 }
 
@@ -36,19 +34,24 @@ export function getNextWorkout(workoutsList: { id: number; title: string }[]): {
  * Для каждого результата определяет номер круга (цикла) прохождения программы.
  * Возвращает массив с добавленным полем round (начиная с 1).
  */
-export function getResultsWithRounds(): Array<WorkoutResult & { round: number }> {
+export function getResultsWithRounds(workoutsCount?: number): Array<WorkoutResult & { round: number }> {
   const results = loadWorkoutResults().sort((a, b) => a.date.localeCompare(b.date));
-  const rounds: Record<number, number> = {};
+  let count = workoutsCount;
+  if (!count) {
+    // fallback: максимальный id среди результатов
+    const ids = Array.from(new Set(results.map(r => r.workoutId)));
+    count = Math.max(...ids, 1);
+  }
   let round = 1;
   let seen = new Set<number>();
   return results.map(r => {
     seen.add(r.workoutId);
-    if (seen.size === 54) { // если все тренировки пройдены — новый круг
+    const resultWithRound = { ...r, round };
+    if (seen.size === count) {
       seen = new Set<number>();
       round++;
     }
-    rounds[r.workoutId] = round;
-    return { ...r, round };
+    return resultWithRound;
   });
 }
 // src/utils/storage.ts
@@ -57,10 +60,11 @@ export function getResultsWithRounds(): Array<WorkoutResult & { round: number }>
 export type WorkoutResult = {
   workoutId: number;
   date: string; // ISO
-  duration: number; // seconds
+  duration: number; // seconds (всей тренировки)
   exercises: {
     name: string;
     weight: number;
+    duration?: number; // seconds, время выполнения упражнения
   }[];
 };
 

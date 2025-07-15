@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { WorkoutIcon, ResultsIcon, SettingsIcon } from './Icons';
 import './BottomNavigation.css';
 
@@ -19,6 +20,7 @@ const navItems: NavItem[] = [
 ];
 
 const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab, onTabChange }) => {
+  useTranslation();
   return (
     <nav className="bottom-navigation">
       {navItems.map((item) => {

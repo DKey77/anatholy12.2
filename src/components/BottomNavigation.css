@@ -1,17 +1,24 @@
 .bottom-navigation {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 24px;
   display: flex;
-  background: #f0f0f3;
-  padding: 8px 16px calc(20px + env(safe-area-inset-bottom));
+  background: rgba(28,28,30,0.65);
+  padding: 14px 32px 24px 32px;
   z-index: 1000;
-  height: 80px;
+  height: 86px;
+  max-width: 370px;
+  width: calc(100vw - 32px);
   box-sizing: border-box;
   justify-content: center;
   align-items: flex-start;
   gap: 48px;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.22), 0 1.5px 8px 0 rgba(0,0,0,0.10);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  transition: background 0.3s, box-shadow 0.3s, border-radius 0.3s;
 }
 
 .nav-item {
@@ -19,17 +26,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f0f0f3;
+  background: rgba(28,28,30,0.45);
   border: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   padding: 0;
-  width: 56px;
-  height: 56px;
+  width: 58px;
+  height: 58px;
   border-radius: 16px;
-  box-shadow: 
-    6px 6px 12px #d1d1d4,
-    -6px -6px 12px #ffffff;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  /* border: none; */
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
 }
 
 .nav-item:active {
@@ -44,14 +52,17 @@
 
 @media (prefers-color-scheme: dark) {
   .bottom-navigation {
-    background: #1c1c1e;
+    background: rgba(28,28,30,0.45);
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.18);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
   }
   
   .nav-item {
-    background: #1c1c1e;
-    box-shadow: 
-      6px 6px 12px #0f0f10,
-      -6px -6px 12px #29292c;
+    background: rgba(28,28,30,0.45);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
   }
   
   .nav-item.active {

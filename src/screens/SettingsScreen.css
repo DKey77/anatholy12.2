@@ -1,4 +1,3 @@
-
 /* Импортируем общие стили из WorkoutsScreen.css */
 @import './WorkoutsScreen.css';
 
@@ -7,6 +6,15 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  background: transparent !important;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding: 0;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .clear-stats-btn {

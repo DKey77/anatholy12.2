@@ -1,0 +1,286 @@
+{
+  "settings": "Settings",
+  "delete_stats": "Delete all statistics data",
+  "support_author": "Support the author",
+  "start_workout": "Start workout",
+  "no_data": "No data",
+  "workout_1": {
+    "title": "Legs",
+    "exercises": [
+      { "name": "Barbell squats (high trap bar)", "details": "", "sets": "3×12" },
+      { "name": "Leg press", "details": "low foot placement", "sets": "2×15" },
+      { "name": "Deadlift with dumbbells", "details": "pause for 1 sec at the bottom", "sets": "3×8" },
+      { "name": "Single-leg squats", "details": "with or without support", "sets": "3×10" },
+      { "name": "Jumping jacks to maximum height", "details": "jump as high as possible", "sets": "4×10" }
+    ]
+  },
+  "workout_4": {
+    "title": "Legs, Shoulders",
+    "exercises": [
+      { "name": "Barbell squats", "details": "", "sets": "2×8" },
+      { "name": "Barbell squats with pause at the bottom", "details": "", "sets": "2×7" },
+      { "name": "Leg press", "details": "wide and high stance", "sets": "4×12" },
+      { "name": "Walking lunges with dumbbells", "details": "for each leg", "sets": "3×10" },
+      { "name": "Seated dumbbell lateral raises", "details": "", "sets": "3×15" },
+      { "name": "Standing barbell shoulder press", "details": "", "sets": "3×8" }
+    ]
+  },
+  "workout_5": {
+    "title": "Chest, Triceps",
+    "exercises": [
+      { "name": "Incline bench press (30°)", "details": "", "sets": "3×10" },
+      { "name": "Dumbbell bench press", "details": "", "sets": "3×10" },
+      { "name": "Cable crossovers", "details": "", "sets": "3×12" },
+      { "name": "Close-grip bench press", "details": "", "sets": "3×8" },
+      { "name": "Seated dumbbell front raises", "details": "", "sets": "3×10" },
+      { "name": "Max push-ups", "details": "", "sets": "1 set" }
+    ]
+  },
+  "workout_6": {
+    "title": "Back, Biceps",
+    "exercises": [
+      { "name": "Block deadlift (3–5 cm height)", "details": "", "sets": "3×8" },
+      { "name": "Deadlift", "details": "", "sets": "2×3" },
+      { "name": "Pull-ups (or lat pulldown)", "details": "", "sets": "3×10" },
+      { "name": "Dumbbell rows in bent-over position", "details": "", "sets": "3×10" },
+      { "name": "Seated dumbbell shrugs", "details": "", "sets": "3×10" },
+      { "name": "Straight barbell curls", "details": "", "sets": "3×12" },
+      { "name": "Reverse grip barbell curls", "details": "", "sets": "2×15" }
+    ]
+  },
+  "workout_7": {
+    "title": "Legs",
+    "exercises": [
+      { "name": "Barbell squats", "details": "", "sets": "4×6" },
+      { "name": "Front squats", "details": "", "sets": "2×10" },
+      { "name": "Deadlifts", "details": "", "sets": "3×10" },
+      { "name": "Leg press (with pause at the bottom for 3 sec)", "details": "", "sets": "3×8" },
+      { "name": "Jumping jacks to maximum height", "details": "", "sets": "3×10" }
+    ]
+  },
+  "workout_8": {
+    "title": "Chest",
+    "exercises": [
+      { "name": "Dumbbell bench press", "details": "", "sets": "3×8" },
+      { "name": "Close-grip barbell bench press", "details": "", "sets": "2×10" },
+      { "name": "Parallel bar dips (weighted if possible)", "details": "", "sets": "3×8" },
+      { "name": "Flyes", "details": "", "sets": "4×12" },
+      { "name": "Plate press", "details": "", "sets": "2×20" }
+    ]
+  },
+  "workout_9": {
+    "title": "Back",
+    "exercises": [
+      { "name": "Deadlifts", "details": "", "sets": "3×7" },
+      { "name": "Rack pulls with the bar resting 3–3 cm above the knee", "details": "", "sets": "2×9" },
+      { "name": "Seated cable rows", "details": "", "sets": "3×10" },
+      { "name": "Wide-grip lat pulldowns", "details": "", "sets": "3×10" },
+      { "name": "Straight-arm pulldowns", "details": "", "sets": "4×12" }
+    ]
+  },
+  "workout_10": {
+    "title": "Arms and Shoulders",
+    "exercises": [
+      { "name": "Hammer curls", "details": "", "sets": "3×8" },
+      { "name": "Wide-grip barbell curls", "details": "", "sets": "3×8" },
+      { "name": "Skull crushers", "details": "", "sets": "3×8" },
+      { "name": "Incline dumbbell triceps extensions", "details": "", "sets": "4×12" },
+      { "name": "Seated dumbbell lateral raises", "details": "", "sets": "4×15" }
+    ]
+  },
+  "workout_11": {
+    "title": "Legs",
+    "exercises": [
+      { "name": "Squats", "details": "", "sets": "5×5" },
+      { "name": "Leg press (pause for 3 seconds at the bottom)", "details": "", "sets": "3×8" },
+      { "name": "Front squats with dumbbell", "details": "", "sets": "3×12" },
+      { "name": "Long jumps", "details": "", "sets": "3×8" },
+      { "name": "Weighted hyperextensions", "details": "", "sets": "3×10" }
+    ]
+  },
+
+  "workout_12": {
+    "title": "Bench press",
+    "exercises": [
+      { "name": "Bench press", "details": "", "sets": "5×5" },
+      { "name": "Narrow dumbbell press", "details": "", "sets": "3×10" },
+      { "name": "Incline press (30°)", "details": "", "sets": "3×12" },
+      { "name": "Cable crossovers", "details": "", "sets": "4×15" },
+      { "name": "Triceps pushdowns", "details": "", "sets": "3×12" },
+      { "name": "Close grip bench press, 3 seconds down and 1 second up (important to do with a spotter)", "details": "", "sets": "3×5" }
+    ]
+  },
+
+  "workout_13": {
+    "title": "Back and Biceps",
+    "exercises": [
+      { "name": "Deadlift", "details": "", "sets": "5×5" },
+      { "name": "Pull-ups (or cable pulldowns)", "details": "", "sets": "4×8" },
+      { "name": "Horizontal cable rows", "details": "", "sets": "4×10" },
+      { "name": "Bent-over barbell rows (important not to use too much weight, focus on feeling the movement)", "details": "", "sets": "3×10" }
+    ]
+  },
+
+  "workout_14": {
+    "title": "Legs",
+    "exercises": [
+      { "name": "Squats", "details": "", "sets": "4×4" },
+      { "name": "Front squats", "details": "", "sets": "3×10" },
+      { "name": "Leg press", "details": "", "sets": "3×10" },
+      { "name": "High jumps", "details": "", "sets": "4×12" },
+      { "name": "Single-leg squats (can be done with support)", "details": "", "sets": "2×10" }
+    ]
+  },
+
+  "workout_15": {
+    "title": "Chest",
+    "exercises": [
+      { "name": "Bench press", "details": "", "sets": "4×4" },
+      { "name": "Bench press with a 4-second pause at the bottom", "details": "", "sets": "3×3" },
+      { "name": "Dumbbell bench press", "details": "", "sets": "3×12" },
+      { "name": "Pullover", "details": "", "sets": "3×12" },
+      { "name": "Floor presses", "details": "", "sets": "2×max" }
+    ]
+  },
+
+  "workout_16": {
+    "title": "Back and Legs",
+    "exercises": [
+      { "name": "Deadlift", "details": "", "sets": "4×4" },
+      { "name": "Leg press", "details": "", "sets": "3×10" },
+      { "name": "Cable rows with a 2-second pause at the top", "details": "", "sets": "5×8" },
+      { "name": "Vertical jumps", "details": "", "sets": "3×10" }
+    ]
+  },
+
+  "workout_17": {
+    "title": "Legs",
+    "exercises": [
+      { "name": "Squats", "details": "", "sets": "3×3" },
+      { "name": "Trap bar squats", "details": "", "sets": "3×10" },
+      { "name": "Leg press", "details": "", "sets": "3×10" },
+      { "name": "Sumo squats with dumbbells on chest", "details": "", "sets": "3×10" }
+    ]
+  },
+
+  "workout_18": {
+    "title": "Chest",
+    "exercises": [
+      { "name": "Bench press", "details": "", "sets": "3×3" },
+      { "name": "Incline bench press (45°)", "details": "", "sets": "3×8" },
+      { "name": "Standing barbell press", "details": "", "sets": "3×6" },
+      { "name": "Incline dumbbell press (40°)", "details": "", "sets": "4×15" }
+    ]
+  },
+
+  "workout_19": {
+    "title": "Back",
+    "exercises": [
+      { "name": "Deadlift", "details": "", "sets": "3×3" },
+      { "name": "Reverse-grip bent-over rows", "details": "", "sets": "3×8" },
+      { "name": "Lat pulldowns", "details": "", "sets": "3×10" },
+      { "name": "T-bar rows", "details": "", "sets": "4×10" },
+      { "name": "Shrugs with barbell", "details": "", "sets": "4×10" }
+    ]
+  },
+
+  "workout_20": {
+    "title": "Legs and Shoulders",
+    "exercises": [
+      { "name": "Squats", "details": "", "sets": "2×2" },
+      { "name": "Front squats", "details": "", "sets": "3×12" },
+      { "name": "Sumo leg press", "details": "", "sets": "3×10" },
+      { "name": "Standing barbell press", "details": "", "sets": "3×6" },
+      { "name": "Seated dumbbell press", "details": "", "sets": "3×10" }
+    ]
+  },
+
+  "workout_21": {
+    "title": "Chest and Triceps",
+    "exercises": [
+      { "name": "Bench press", "details": "", "sets": "2×2" },
+      { "name": "Incline dumbbell press (30°)", "details": "", "sets": "3×10" },
+      { "name": "Dips", "details": "", "sets": "3×15" },
+      { "name": "Dumbbell French press on incline bench (30°)", "details": "", "sets": "3×12" },
+      { "name": "Cable triceps extensions", "details": "", "sets": "4×12" }
+    ]
+  },
+
+  "workout_22": {
+    "title": "Back and Biceps",
+    "exercises": [
+      { "name": "Deadlift", "details": "", "sets": "2×2" },
+      { "name": "Bent-over rows with barbell", "details": "", "sets": "3×8" },
+      { "name": "Bent-over rows with dumbbells", "details": "", "sets": "3×10" },
+      { "name": "Pull-ups", "details": "", "sets": "3×10" },
+      { "name": "Reverse-grip barbell curls", "details": "", "sets": "3×10" },
+      { "name": "Bicep curls on cable machine", "details": "", "sets": "3×20" }
+    ]
+  },
+
+  "workout_23": {
+    "title": "Legs and Shoulders",
+    "exercises": [
+      { "name": "Squat (for max record)", "details": "", "sets": "1×1" },
+      { "name": "Squats", "details": "", "sets": "3×12" },
+      { "name": "Leg press", "details": "", "sets": "3×15" },
+      { "name": "Lateral raises with dumbbels", "details": "", "sets": "4×12" },
+      { "name": "Standing dumbbell press", "details": "", "sets": "3×12" }
+    ]
+  },
+
+  "workout_24": {
+    "title": "Chest and Biceps",
+    "exercises": [
+      { "name": "Bench press (for max record)", "details": "", "sets": "1×1" },
+      { "name": "Bench press", "details": "", "sets": "3×10" },
+      { "name": "Incline dumbbell press", "details": "", "sets": "3×10" },
+      { "name": "Hammer curls", "details": "", "sets": "5×5" },
+      { "name": "One-arm cable curls", "details": "", "sets": "3×10" }
+    ]
+  },
+
+  "workout_25": {
+    "title": "Deadlift",
+    "exercises": [
+      { "name": "Bent-over barbell row", "details": "", "sets": "1×max" },
+      { "name": "Bent-over barbell row", "details": "", "sets": "3×8" },
+      { "name": "Lat pulldown to chest", "details": "", "sets": "5×10" },
+      { "name": "Triceps pushdowns", "details": "", "sets": "3×12" },
+      { "name": "Dumbbell French press (on flat bench)", "details": "", "sets": "3×10" },
+      { "name": "Diamond push-ups", "details": "", "sets": "2×max" }
+    ]
+  },
+  "workout_2": {
+    "title": "Chest, Biceps, Shoulders",
+    "exercises": [
+      { "name": "Bench press", "details": "2 sec pause at the bottom", "sets": "3×10" },
+      { "name": "Dips", "details": "with or without additional weight", "sets": "3×10" },
+      { "name": "Incline dumbbell press", "details": "45°", "sets": "3×8" },
+      { "name": "Prayer bench press", "details": "", "sets": "3×15" },
+      { "name": "Hammer curls", "details": "", "sets": "3×8" },
+      { "name": "Dumbbell curls with supination on incline bench", "details": "45°", "sets": "3×10" },
+      { "name": "Standing arm swings", "details": "", "sets": "2×20" }
+    ]
+  },
+  "workout_3": {
+    "title": "Back, Triceps",
+    "exercises": [
+      { "name": "Deadlift", "details": "sumo or conventional, whichever is more comfortable", "sets": "3×10" },
+      { "name": "Bent-over barbell row", "details": "", "sets": "2×10" },
+      { "name": "Wide-grip lat pulldown", "details": "", "sets": "3×10" },
+      { "name": "Dumbbell rows on bench", "details": "", "sets": "3×12" },
+      { "name": "Dumbbell shrugs", "details": "", "sets": "3×12" },
+      { "name": "Triceps extensions with cable machine", "details": "", "sets": "3×12" }
+    ]
+  },
+  "time": "Time",
+  "finish_workout": "Finish workout",
+  "progress_title": "Workout progress",
+  "of": "of",
+  "last": "Last",
+  "next": "Next",
+  "about_text": "This workout course was created by Volodymyr Shmondenk (better known as MR ANATOLY) — an athlete, coach, and, at the same time, the strongest janitor on the planet. His unique method has already helped thousands of people improve their health, get in shape, and believe in themselves.",
+  "support_text": "To support the author and get the full course with a home workout version, meal plan, and useful tips — click the button below:",
+  "stats_deleted": "Statistics deleted!"
+}

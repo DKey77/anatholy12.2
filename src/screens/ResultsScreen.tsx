@@ -1,97 +1,59 @@
-
 import React, { useEffect, useState } from 'react';
 import './ResultsScreen.css';
-import { getResultsWithRounds, getPreviousResult } from '../utils/storage';
-import {
-  LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, CartesianGrid
-} from 'recharts';
+import { getResultsWithRounds } from '../utils/storage';
+// import recharts removed, no charts used
 import type { WorkoutResult } from '../utils/storage';
 
 
 
 
-// Карточка результата тренировки для сравнения прогресса
-const WorkoutResultCard: React.FC<{ result: WorkoutResult }> = ({ result }) => {
-  const prev = getPreviousResult(result.workoutId, result.date);
+
+
+
+
+
+import { useLocalizedWorkouts } from '../data/useLocalizedWorkouts';
+import { useTranslation } from 'react-i18next';
+
+// Карточка тренировки для статистики
+type WorkoutType = { id: number; title: string; exercises: Array<{ name: string; details: string; sets: string }> };
+const WorkoutStatsCard: React.FC<{ workout: WorkoutType, results: Array<WorkoutResult & { round: number }>, expanded: boolean }> = ({ workout, results, expanded }) => {
+  const { t } = useTranslation();
   return (
-    <div className="workout-result-card compact">
-      <div className="workout-result-header">
-        <span className="workout-id">#{result.workoutId}</span>
-        <span className="workout-date">{new Date(result.date).toLocaleDateString()}</span>
-        <span className="workout-duration">⏱ {Math.floor(result.duration / 60)}:{(result.duration % 60).toString().padStart(2, '0')}</span>
-      </div>
-      <div className="workout-result-exercises compact">
-        {result.exercises.map((ex, i) => {
-          const prevEx = prev?.exercises.find(e => e.name === ex.name);
-          let diff = null;
-          if (prevEx) {
-            const d = ex.weight - prevEx.weight;
-            if (d > 0) diff = <span className="progress-up">+{d}</span>;
-            else if (d < 0) diff = <span className="progress-down">{d}</span>;
-            else diff = <span className="progress-same">•</span>;
-          }
-          return (
-            <div key={i} className="workout-result-exercise compact">
-              <span className="exercise-name">{ex.name}</span>
-              <span className="exercise-weight">{ex.weight}</span>
-              {diff && <span className="exercise-diff">{diff}</span>}
+    <div className={`exercises-list${expanded ? ' expanded' : ''}`}>
+      {workout.exercises.map((exercise, index) => {
+        // Найти все результаты по этому упражнению в этой тренировке
+        const exerciseResults = results
+          .filter(r => r.workoutId === workout.id)
+          .map(r => {
+            const found = r.exercises.find(e => e.name === exercise.name);
+            return found ? found.weight : null;
+          })
+          .filter(w => w !== null)
+          .reverse(); // чтобы новый вес был справа
+
+        return (
+          <div key={index} className="exercise-item stats">
+            <span className="exercise-number">{index + 1}.</span>
+            <div className="exercise-content">
+              <div className="exercise-name">{exercise.name}</div>
+              {exercise.details && (
+                <div className="exercise-details">{exercise.details}</div>
+              )}
+              <div className="exercise-history-weights">
+                {exerciseResults.length === 0 ? (
+                  <span className="exercise-history-empty">{t('no_data', '—')}</span>
+                ) : (
+                  exerciseResults.map((w, i) => (
+                    <span key={i} className="exercise-history-weight">{w} кг</span>
+                  ))
+                )}
+              </div>
             </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-};
-
-// Аналитика по всем тренировкам
-const AnalyticsBlock: React.FC<{ results: Array<WorkoutResult & { round: number }> }> = ({ results }) => {
-  // Считаем общее время, количество тренировок, средний вес по упражнениям
-  const totalTime = results.reduce((sum, r) => sum + r.duration, 0);
-  const totalWorkouts = results.length;
-  // Собираем статистику по упражнениям
-  const exerciseStats: Record<string, { weights: number[], dates: string[] }> = {};
-  results.forEach(r => {
-    r.exercises.forEach(ex => {
-      if (!exerciseStats[ex.name]) exerciseStats[ex.name] = { weights: [], dates: [] };
-      exerciseStats[ex.name].weights.push(ex.weight);
-      exerciseStats[ex.name].dates.push(r.date);
-    });
-  });
-
-  // Для графика: показываем топ-1 упражнение по количеству записей
-  const topExercise = Object.entries(exerciseStats).sort((a, b) => b[1].weights.length - a[1].weights.length)[0];
-  let chartData: { date: string, weight: number }[] = [];
-  let chartLabel = '';
-  if (topExercise) {
-    chartLabel = topExercise[0];
-    chartData = topExercise[1].weights.map((w, i) => ({
-      date: new Date(topExercise[1].dates[i]).toLocaleDateString(),
-      weight: w
-    }));
-  }
-
-  return (
-    <div className="analytics-block">
-      <h3>Аналитика</h3>
-      <div className="analytics-row">
-        <div>Всего тренировок: <b>{totalWorkouts}</b></div>
-        <div>Общее время: <b>{Math.floor(totalTime / 60)} мин</b></div>
-      </div>
-      {chartData.length > 1 && (
-        <div className="analytics-chart">
-          <div className="chart-title">Прогресс: {chartLabel}</div>
-          <ResponsiveContainer width="100%" height={180}>
-            <LineChart data={chartData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" fontSize={12} />
-              <YAxis fontSize={12} width={32} />
-              <Tooltip />
-              <Legend />
-              <Line type="monotone" dataKey="weight" stroke="#007aff" strokeWidth={2} dot={{ r: 3 }} name="Вес (кг)" />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      )}
+            <div className="exercise-sets">{exercise.sets}</div>
+          </div>
+        );
+      })}
     </div>
   );
 };
@@ -100,45 +62,51 @@ const AnalyticsBlock: React.FC<{ results: Array<WorkoutResult & { round: number 
 // Группировка результатов по кругам
 const ResultsScreen: React.FC = () => {
   const [results, setResults] = useState<Array<WorkoutResult & { round: number }>>([]);
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
 
   useEffect(() => {
     // Сортируем по дате убыванию, группируем по кругам
     setResults(getResultsWithRounds().sort((a, b) => b.date.localeCompare(a.date)));
   }, []);
 
-  // Группируем по кругам
-  const grouped = results.reduce((acc, r) => {
-    acc[r.round] = acc[r.round] || [];
-    acc[r.round].push(r);
-    return acc;
-  }, {} as Record<number, Array<WorkoutResult & { round: number }>>);
+  const toggleCard = (id: number) => {
+    setExpandedCard(expandedCard === id ? null : id);
+  };
 
-  const rounds = Object.keys(grouped).sort((a, b) => Number(b) - Number(a));
-
+  const { t } = useTranslation();
+  const workouts = useLocalizedWorkouts();
   return (
     <div className="screen">
       <div className="screen-content">
-        <h2>Ваша статистика</h2>
-        {results.length === 0 ? (
-          <div className="empty-state">
-            <div className="empty-icon">📊</div>
-            <p>Здесь будет отображаться прогресс ваших тренировок</p>
-          </div>
-        ) : (
-          <>
-            <AnalyticsBlock results={results} />
-            <div className="workout-results-list">
-              {rounds.map(round => (
-                <div key={round} className="results-round-block">
-                  <div className="results-round-title">Круг {round}</div>
-                  {grouped[Number(round)].map((r, i) => (
-                    <WorkoutResultCard key={r.date + r.workoutId + i} result={r} />
-                  ))}
-                </div>
-              ))}
+        {workouts.map(workout => (
+          <div
+            key={workout.id}
+            className={`workout-card stats${expandedCard === workout.id ? ' expanded' : ''}`}
+            onClick={() => toggleCard(workout.id)}
+            style={{ cursor: 'pointer' }}
+          >
+            <div className="workout-header">
+              <div className="workout-number">{workout.id}</div>
+              <div className="workout-info">
+                <h3 className="workout-title">{workout.title}</h3>
+                <span className="exercise-count">{workout.exercises.length} {t('exercises', 'упражнений')}</span>
+                {(() => {
+                  const lastResult = results.filter(r => r.workoutId === workout.id)[0];
+                  const formatTime = (seconds: number) => {
+                    const mins = Math.floor(seconds / 60);
+                    const secs = seconds % 60;
+                    return `${mins}:${secs.toString().padStart(2, '0')}`;
+                  };
+                  return lastResult && (
+                    <div className="workout-duration-label">{t('time', 'Время')}: {formatTime(lastResult.duration)}</div>
+                  );
+                })()}
+              </div>
+              <div className="expand-icon">{expandedCard === workout.id ? '−' : '+'}</div>
             </div>
-          </>
-        )}
+            <WorkoutStatsCard workout={workout} results={results} expanded={expandedCard === workout.id} />
+          </div>
+        ))}
       </div>
     </div>
   );

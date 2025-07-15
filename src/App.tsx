@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AppHeader from './components/AppHeader';
 import BottomNavigation from './components/BottomNavigation';
 import WorkoutsScreen from './screens/WorkoutsScreen';
@@ -7,25 +7,35 @@ import ResultsScreen from './screens/ResultsScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import './App.css';
 import { getCurrentRoundCompletedIds, getLastCompletedWorkout, getNextWorkout } from './utils/storage';
+import { useLocalizedWorkouts } from './data/useLocalizedWorkouts';
+
 
 
 function App() {
   const [activeTab, setActiveTab] = useState('workouts');
+  const workouts = useLocalizedWorkouts();
+  const totalWorkouts = workouts.length;
 
-  // Получаем список всех тренировок (id и title) из WorkoutsScreen
-  // Для этого импортируем workouts из WorkoutsScreen (или выносим в отдельный модуль)
-  // Здесь временно дублируем для примера:
-  const workouts = [
-    { id: 1, title: 'Ноги' },
-    { id: 2, title: 'Грудь, Бицепсы, Плечи' },
-    { id: 3, title: 'Спина, Трицепс' },
-    // ... остальные тренировки ...
-    { id: 54, title: '🏆 Финальный тест силы' },
-  ];
-  const totalWorkouts = 54;
-  const completedWorkouts = getCurrentRoundCompletedIds().length;
-  const lastWorkout = getLastCompletedWorkout();
-  const nextWorkout = getNextWorkout(workouts);
+  // Состояния для прогресса
+  const [completedWorkouts, setCompletedWorkouts] = useState(() => getCurrentRoundCompletedIds(totalWorkouts).length);
+  const [lastWorkout, setLastWorkout] = useState(() => getLastCompletedWorkout());
+  const [nextWorkout, setNextWorkout] = useState(() => getNextWorkout(workouts.map(w => ({ id: w.id, title: w.title }))));
+
+  // Обновлять прогресс при изменении localStorage (результатов)
+  useEffect(() => {
+    const updateProgress = () => {
+      setCompletedWorkouts(getCurrentRoundCompletedIds(totalWorkouts).length);
+      setLastWorkout(getLastCompletedWorkout());
+      setNextWorkout(getNextWorkout(workouts.map(w => ({ id: w.id, title: w.title }))));
+    };
+    window.addEventListener('storage', updateProgress);
+    window.addEventListener('focus', updateProgress);
+    updateProgress();
+    return () => {
+      window.removeEventListener('storage', updateProgress);
+      window.removeEventListener('focus', updateProgress);
+    };
+  }, [activeTab, workouts, totalWorkouts]);
 
   const renderScreen = () => {
     switch (activeTab) {
