@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import './WorkoutsScreen.css';
 // Импортируем функции для работы с результатами тренировок
-import { saveWorkoutResult, getCurrentRoundCompletedIds } from '../utils/storage';
+import { saveWorkoutResult } from '../utils/storage';
 import type { WorkoutResult } from '../utils/storage';
 import { useLocalizedWorkouts } from '../data/useLocalizedWorkouts';
 
@@ -61,11 +61,6 @@ const WorkoutsScreen: React.FC = () => {
       };
       saveWorkoutResult(result);
 
-      // Проверяем, завершен ли круг (все тренировки пройдены)
-      // Получаем актуальное количество тренировок
-      const totalWorkouts = workouts.length;
-      // Получаем id завершённых тренировок после сохранения
-      // (нужно подождать, пока localStorage обновится)
       // После завершения круга ничего не удаляем — статистика сохраняется.
     }
     setActiveWorkout(null);
