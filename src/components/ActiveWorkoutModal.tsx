@@ -38,9 +38,14 @@ const ActiveWorkoutModal: React.FC = () => {
 
   const elapsed = activeWorkout ? Math.floor((now - activeWorkout.startTime) / 1000) : finalElapsed || 0;
   const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
+    const hrs = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
     const secs = seconds % 60;
-    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+    if (hrs > 0) {
+      return `${hrs.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+    } else {
+      return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+    }
   };
 
   const updateWeight = (exerciseIndex: number, change: number) => {
@@ -89,16 +94,16 @@ const ActiveWorkoutModal: React.FC = () => {
                     {exercise.details && <div className="exercise-details">{exercise.details}</div>}
                     <div className="exercise-sets">{exercise.sets}</div>
                   </div>
-                  <div className="weight-controls">
-                    <div className="weight-buttons weight-buttons-left">
-                      <button className="weight-btn minus" onClick={() => updateWeight(index, -20)}>-20</button>
-                      <button className="weight-btn minus" onClick={() => updateWeight(index, -5)}>-5</button>
-                      <button className="weight-btn minus" onClick={() => updateWeight(index, -1)}>-1</button>
-                      <button className="weight-btn minus" onClick={() => updateWeight(index, -0.5)}>-0.5</button>
+                  <div className="weight-controls vertical">
+                    <div className="weight-buttons weight-buttons-minus">
                       <button className="weight-btn minus" onClick={() => updateWeight(index, -0.25)}>-0.25</button>
+                      <button className="weight-btn minus" onClick={() => updateWeight(index, -0.5)}>-0.5</button>
+                      <button className="weight-btn minus" onClick={() => updateWeight(index, -1)}>-1</button>
+                      <button className="weight-btn minus" onClick={() => updateWeight(index, -5)}>-5</button>
+                      <button className="weight-btn minus" onClick={() => updateWeight(index, -20)}>-20</button>
                     </div>
                     <div className="weight-display">{exercise.weight || 0} кг</div>
-                    <div className="weight-buttons weight-buttons-right">
+                    <div className="weight-buttons weight-buttons-plus">
                       <button className="weight-btn plus" onClick={() => updateWeight(index, 0.25)}>+0.25</button>
                       <button className="weight-btn plus" onClick={() => updateWeight(index, 0.5)}>+0.5</button>
                       <button className="weight-btn plus" onClick={() => updateWeight(index, 1)}>+1</button>

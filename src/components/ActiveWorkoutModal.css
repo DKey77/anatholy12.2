@@ -20,7 +20,7 @@
   padding: 24px;
   max-width: 400px;
   width: 90vw;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  box-shadow: none;
   max-height: 90vh;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -60,7 +60,7 @@
   padding: 32px 24px 24px 24px;
   border-radius: 28px;
   background: rgba(28, 28, 30, 0.65);
-  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+  box-shadow: none;
   color: #fff;
   text-align: center;
   backdrop-filter: blur(18px) saturate(180%);
@@ -96,7 +96,7 @@
 .active-exercise-item {
   background: rgba(28,28,30,0.65) !important;
   border-radius: 18px !important;
-  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.22), 0 1.5px 8px 0 rgba(0,0,0,0.10) !important;
+  box-shadow: none !important;
   backdrop-filter: blur(22px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(22px) saturate(180%) !important;
   color: #fff !important;
@@ -111,7 +111,7 @@
 .active-exercise-item:active,
 .active-exercise-item:focus-within {
   background: rgba(28,28,30,0.85) !important;
-  box-shadow: 0 12px 36px 0 rgba(0,0,0,0.28), 0 2px 12px 0 rgba(0,0,0,0.14) !important;
+  box-shadow: none !important;
 }
 
 .exercise-info {
@@ -146,6 +146,23 @@
   flex-wrap: wrap;
 }
 
+.weight-controls.vertical {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.weight-controls.vertical .weight-buttons {
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.weight-controls.vertical .weight-display {
+  margin: 8px 0;
+}
+
 .weight-display {
   font-size: 1.2rem;
   font-weight: 700;
@@ -155,24 +172,54 @@
   margin: 0 8px;
 }
 
+
 .weight-buttons {
   display: flex;
   gap: 6px;
 }
 
-.weight-buttons-left {
-  flex-direction: row-reverse;
+ .weight-buttons-minus {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 8px;
+ }
+ .weight-buttons-plus {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 8px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  width: auto;
+  min-width: min-content;
+  scrollbar-width: none;
+}
+ .weight-buttons-plus::-webkit-scrollbar {
+  display: none;
+ }
+.weight-buttons-minus {
+  margin-bottom: 8px;
 }
 
+.weight-buttons-plus {
+  margin-top: 8px;
+}
+
+
 .weight-buttons button {
-  font-size: 1.1rem;
-  padding: 10px 12px;
+  font-size: 1rem;
+  padding: 10px 14px;
+  min-width: 38px;
   border-radius: 10px;
   border: none;
   background: rgba(255,255,255,0.55);
   color: #0a84ff;
   font-weight: 700;
-  box-shadow: 0 1.5px 8px 0 rgba(0,0,0,0.04);
+  box-shadow: none;
   transition: background 0.15s, color 0.15s;
   cursor: pointer;
   outline: none;
@@ -227,8 +274,8 @@
   }
   .weight-buttons button {
     font-size: 1rem;
-    padding: 10px 8px;
-    min-width: 36px;
+    padding: 10px 14px;
+    min-width: 38px;
   }
   .weight-display {
     font-size: 1.1rem;
