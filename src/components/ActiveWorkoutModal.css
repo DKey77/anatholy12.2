@@ -1,3 +1,8 @@
+.weight-buttons-plus .weight-btn.plus:first-child {
+  min-width: 32px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
 .active-workout-modal {
   position: fixed;
   top: 0;
@@ -182,31 +187,23 @@
   display: flex;
   flex-direction: row;
   gap: 6px;
-  width: 100%;
   justify-content: center;
   margin-bottom: 8px;
  }
  .weight-buttons-plus {
-  display: flex;
-  flex-direction: row;
-  gap: 6px;
-  justify-content: center;
-  margin-top: 8px;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  width: auto;
-  min-width: min-content;
-  scrollbar-width: none;
-}
- .weight-buttons-plus::-webkit-scrollbar {
-  display: none;
- }
-.weight-buttons-minus {
-  margin-bottom: 8px;
+  min-width: max-content;
+  justify-content: flex-start;
+  margin-left: 0;
+  margin-right: auto;
 }
 
-.weight-buttons-plus {
-  margin-top: 8px;
+.weight-buttons-plus .weight-btn {
+  flex-shrink: 0;
+  min-width: 48px;
+}
+
+.weight-buttons-plus::-webkit-scrollbar {
+  display: none;
 }
 
 
