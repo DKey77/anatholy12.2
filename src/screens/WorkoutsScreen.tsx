@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import ActiveWorkoutModal from '../components/ActiveWorkoutModal';
+import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import './WorkoutsScreen.css';
 // Импортируем функции для работы с результатами тренировок
-import { saveWorkoutResult } from '../utils/storage';
-import type { WorkoutResult } from '../utils/storage';
+// import { saveWorkoutResult } from '../utils/storage';
+// import type { WorkoutResult } from '../utils/storage';
 import { useLocalizedWorkouts } from '../data/useLocalizedWorkouts';
+import { useWorkout } from '../context/WorkoutContext';
 
 const WorkoutsScreen: React.FC = () => {
   const { t } = useTranslation();
@@ -12,115 +14,17 @@ const WorkoutsScreen: React.FC = () => {
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
   const exercisesRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
 
-  // СОСТОЯНИЯ ДЛЯ ТРЕНИРОВКИ
-  const [activeWorkout, setActiveWorkout] = useState<any>(null);
-  const [workoutTimer, setWorkoutTimer] = useState<number>(0);
-
-  // ТАЙМЕР ТРЕНИРОВКИ
-  useEffect(() => {
-    let interval: number | null = null;
-    if (activeWorkout) {
-      interval = setInterval(() => {
-        setWorkoutTimer(prev => prev + 1);
-      }, 1000);
-    }
-    return () => {
-      if (interval) clearInterval(interval);
-    };
-  }, [activeWorkout]);
-
-  // ФУНКЦИИ ТРЕНИРОВКИ
-  const startWorkout = (workout: any) => {
-    const exercisesWithWeight = workout.exercises.map((exercise: any) => ({
-      ...exercise,
-      weight: 0
-    }));
-    setActiveWorkout({
-      ...workout,
-      exercises: exercisesWithWeight,
-      startTime: new Date()
-    });
-    setWorkoutTimer(0);
-  };
+  // Используем глобальный WorkoutContext
+  const { startWorkout } = useWorkout();
 
 
-  /**
-   * Завершает тренировку, сохраняет результат в localStorage
-   */
-  const finishWorkout = () => {
-    if (activeWorkout) {
-      // Формируем результат тренировки
-      const result: WorkoutResult = {
-        workoutId: activeWorkout.id,
-        date: new Date().toISOString(),
-        duration: workoutTimer,
-        exercises: activeWorkout.exercises.map((ex: any) => ({
-          name: ex.name,
-          weight: ex.weight || 0
-        }))
-      };
-      saveWorkoutResult(result);
-
-      // После завершения круга ничего не удаляем — статистика сохраняется.
-    }
-    setActiveWorkout(null);
-    setWorkoutTimer(0);
-  };
-
-  const updateWeight = (exerciseIndex: number, change: number) => {
-    if (!activeWorkout) return;
-    const updated = { ...activeWorkout };
-    updated.exercises[exerciseIndex].weight = Math.max(0, updated.exercises[exerciseIndex].weight + change);
-    setActiveWorkout(updated);
-  };
-
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
-  };
 
   const toggleCard = (id: number) => {
     setExpandedCard(expandedCard === id ? null : id);
   };
 
 
-  // ЕСЛИ АКТИВНАЯ ТРЕНИРОВКА - ПОКАЗЫВАЕМ ФОРМУ ТРЕНИРОВКИ
-  if (activeWorkout) {
-    return (
-      <div className="screen">
-        <div className="screen-content">
-          <div className="active-workout-header">
-            <h2>{activeWorkout.title}</h2>
-            <div className="workout-timer">{t('time')}: {formatTime(workoutTimer)}</div>
-            <button className="finish-workout-btn" onClick={finishWorkout}>{t('finish_workout', 'Завершить тренировку')}</button>
-          </div>
-          <div className="active-exercises-list">
-            {activeWorkout.exercises.map((exercise: any, index: number) => (
-              <div key={index} className="active-exercise-item">
-                <div className="exercise-info">
-                  <div className="exercise-name">{exercise.name}</div>
-                  {exercise.details && <div className="exercise-details">{exercise.details}</div>}
-                  <div className="exercise-sets">{exercise.sets}</div>
-                </div>
-                <div className="weight-controls">
-                  <div className="weight-display">{exercise.weight} кг</div>
-                  <div className="weight-buttons">
-                    <button onClick={() => updateWeight(index, -20)}>-20</button>
-                    <button onClick={() => updateWeight(index, -5)}>-5</button>
-                    <button onClick={() => updateWeight(index, -0.5)}>-0.5</button>
-                    <button onClick={() => updateWeight(index, 0.5)}>+0.5</button>
-                    <button onClick={() => updateWeight(index, 5)}>+5</button>
-                    <button onClick={() => updateWeight(index, 20)}>+20</button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
+
 
   return (
     <div className="screen">
@@ -189,6 +93,7 @@ const WorkoutsScreen: React.FC = () => {
             );
           })}
         </div>
+        <ActiveWorkoutModal />
       </div>
     </div>
   );

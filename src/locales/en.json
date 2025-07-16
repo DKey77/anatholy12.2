@@ -282,5 +282,7 @@
   "next": "Next",
   "about_text": "This workout course was created by Volodymyr Shmondenk (better known as MR ANATOLY) — an athlete, coach, and, at the same time, the strongest janitor on the planet. His unique method has already helped thousands of people improve their health, get in shape, and believe in themselves.",
   "support_text": "To support the author and get the full course with a home workout version, meal plan, and useful tips — click the button below:",
-  "stats_deleted": "Statistics deleted!"
+  "stats_deleted": "Statistics deleted!",
+  "workout_completed": "Workout completed!",
+  "elapsed_time": "Elapsed time"
 }
