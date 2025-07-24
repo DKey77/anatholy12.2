@@ -7,11 +7,21 @@ import './ActiveWorkoutModal.css';
 
 const ActiveWorkoutModal: React.FC = () => {
   const { activeWorkout, finishWorkout } = useWorkout();
+  // Helper to update exercises in context
+  const updateContextExercises = (newExercises: any[]) => {
+    if (!activeWorkout) return;
+    // Directly update exercises in context's activeWorkout
+    activeWorkout.exercises = newExercises;
+    // Also persist to localStorage via context effect
+    localStorage.setItem('activeWorkout', JSON.stringify(activeWorkout));
+  }
   const { t } = useTranslation();
   const [exercises, setExercises] = useState<any[]>(activeWorkout?.exercises || []);
   const [now, setNow] = useState(Date.now());
   const [showElapsedModal, setShowElapsedModal] = useState(false);
   const [finalElapsed, setFinalElapsed] = useState<number | null>(null);
+
+  // ...existing code...
 
   useEffect(() => {
     if (!activeWorkout) return;
@@ -19,6 +29,7 @@ const ActiveWorkoutModal: React.FC = () => {
     return () => clearInterval(interval);
   }, [activeWorkout]);
 
+  // Restore exercises from context's activeWorkout
   useEffect(() => {
     if (activeWorkout) setExercises(activeWorkout.exercises);
   }, [activeWorkout]);
@@ -55,6 +66,7 @@ const ActiveWorkoutModal: React.FC = () => {
         ...updated[exerciseIndex],
         weight: Math.max(0, (updated[exerciseIndex].weight || 0) + change)
       };
+      updateContextExercises(updated);
       return updated;
     });
   };
@@ -72,6 +84,8 @@ const ActiveWorkoutModal: React.FC = () => {
       }))
     };
     saveWorkoutResult(result);
+    // Очистить сохранённые веса для этого воркаута
+    localStorage.removeItem('activeWorkout');
     setFinalElapsed(elapsed);
     finishWorkout();
     setShowElapsedModal(true);
