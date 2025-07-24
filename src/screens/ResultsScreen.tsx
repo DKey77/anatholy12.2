@@ -22,7 +22,7 @@ const WorkoutStatsCard: React.FC<{ workout: WorkoutType, results: Array<WorkoutR
   return (
     <div className={`exercises-list${expanded ? ' expanded' : ''}`}>
       {workout.exercises.map((exercise, index) => {
-        // Найти все результаты по этому упражнению в этой тренировке
+        // Используем оригинальное имя упражнения для поиска веса
         const exerciseResults = results
           .filter(r => r.workoutId === workout.id)
           .map(r => {
@@ -93,9 +93,10 @@ const ResultsScreen: React.FC = () => {
                 {(() => {
                   const lastResult = results.filter(r => r.workoutId === workout.id)[0];
                   const formatTime = (seconds: number) => {
-                    const mins = Math.floor(seconds / 60);
+                    const hrs = Math.floor(seconds / 3600);
+                    const mins = Math.floor((seconds % 3600) / 60);
                     const secs = seconds % 60;
-                    return `${mins}:${secs.toString().padStart(2, '0')}`;
+                    return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
                   };
                   return lastResult && (
                     <div className="workout-duration-label">{t('time', 'Время')}: {formatTime(lastResult.duration)}</div>
